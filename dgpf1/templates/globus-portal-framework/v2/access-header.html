@@ -1,0 +1,32 @@
+{% load static %}
+<div class="container-fluid py-2">
+    <div class="p-3 mb-2 bg-header rounded-3">
+        <table style="min-width: 100%">
+            <tr style="vertical-align: top;">
+                <td>
+                    <a href="https://operations.access-ci.org/" title="Operations Home" rel="home">
+                        <img src="/static/img/ACCS050322_ACCESS_Brand_Operations-RGB.png" alt="Home"></a>
+                </td>
+                <td style="vertical-align: top;">
+                    <h2 class="display-6 fw-bold">{{globus_portal_framework.project_title}}</h2>
+                </td>
+		<td style="vertical-align: bottom;"><a href="https://operations.access-ci.org/online_services/search_pilot" target="_blank">About</a></td>
+                <td style="vertical-align: bottom;"><a class="text-dark" href="https://github.com/access-ci-org/Operations_Globus_Search_Pilot" target="_blank">GitHub</a></td>
+{% comment %}
+                <td style="vertical-align: bottom;"><a class="text-dark" href="https://github.com/access-ci-org/Operations_ServiceIndex_Django" target="_blank">{% settings_value "APP_VERSION" %}</a></td>
+{% endcomment %}
+                <td style="vertical-align: bottom; float: right">
+                  {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
+		  <a href="/">{{request.user.username }}</a><br>
+                  <a style="float: right" href="{% url 'logout' %}?next=/">Logout</a>
+                  {% elif globus_portal_framework.auth_enabled %}
+                  <a class="btn-light" href="{% url 'social:begin' 'globus' %}?next={{ request.get_full_path|urlencode }}">
+                    <img src="{% static 'globus-portal-framework/images/globus.png' %}" height="32px" width="32px" style="border-radius: 4px">
+		    <figcaption>Login</figcaption>
+                  </a>
+                  {% endif %}
+		</td>
+            </tr>
+        </table>
+    </div>
+</div> <!-- container-fluid -->

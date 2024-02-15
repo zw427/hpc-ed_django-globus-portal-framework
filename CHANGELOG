@@ -1,3 +1,6 @@
+v0.2.0 2024-02-15 JP
+  - Implement dump.html
+
 v0.1.1 2024-02-13 JP
   - Fix STATIC_ROOT configuration
 

@@ -27,5 +27,5 @@ urlpatterns = [
     # Provides Login urls for Globus Auth
     path('', include('social_django.urls', namespace='social')),
     path('favicon.ico', views.favicon),
-#   path('dump.html', Debug_Details.as_view(), name='debug-details'),
+    path('dump.html', views.Debug_Details, name='debug-details'),
 ]

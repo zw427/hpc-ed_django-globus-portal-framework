@@ -1,3 +1,6 @@
+v0.3.0 2024-02-15 JP
+  - Configure a filter_match=match-all index
+
 v0.2.0 2024-02-15 JP
   - Implement dump.html
 

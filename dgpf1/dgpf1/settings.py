@@ -206,7 +206,25 @@ SEARCH_INDEXES = {
             {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
             {'name': 'Provider ID', 'field_name': 'Provider_ID' },
         ]
-    }
+    },
+    'hpc-ed-v1-match-all': {
+        'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1 (match all)',
+        'uuid': '0e8be9d5-99d7-4641-ae43-f72b40bb8a5c',
+        'filter_match': 'match-all',
+        'facets': [
+            {'name': 'Expertise Level', 'field_name': 'Expertise_Level' },
+            {'name': 'Outcomes', 'field_name': 'Learning_Outcome' },
+            {'name': 'Target Group', 'field_name': 'Target_Group' },
+            {'name': 'Learning Resource Type', 'field_name': 'Learning_Resource_Type'},
+            {'name': 'Learning Outcome', 'field_name': 'Learning_Outome' },
+            {'name': 'Rating', 'field_name': 'Rating', 'type': 'numeric_histogram', 'size': 5, 'histogram_range': {'low': 0.0, 'high': 5.0}},
+            {'name': 'Duration', 'field_name': 'Duration', 'type': 'numeric_histogram', 'size': 8, 'histogram_range': {'low': 30, 'high': 480}},
+            {'name': 'Keywords', 'field_name': 'Keywords' },
+            {'name': 'License', 'field_name': 'License' },
+            {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
+            {'name': 'Provider ID', 'field_name': 'Provider_ID' },
+        ]
+    },
 }
 
 PROJECT_TITLE = 'Search Pilot'

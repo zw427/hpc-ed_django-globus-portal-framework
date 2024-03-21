@@ -50,12 +50,11 @@ Requires the following fields:
                 class="btn btn-primary nav-link active" data-toggle="collapse" href="#collapseExample"
                 target="_blank" role="button" aria-expanded="false" aria-controls="collapseExample"
                 {% else %}
-                class="btn btn-light nav-link disabled" href="#"
+                class="btn btn-light nav-link" href="{{general_info.URL}}" target="_blank"
                 {% endif %}
         >
           <i class="fas fa-link"></i>
 	  Follow Training URL
-	  {{ project_metadata }}
         </a>
         {% endblock %}
       </li>

@@ -132,6 +132,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'stream': {'level': 'DEBUG', 'class': 'logging.StreamHandler'},
+        'null': {'level': 'DEBUG', 'class': 'logging.NullHandler'},
+    },
+    'loggers': {
+        'django': {'handlers': ['stream'], 'level': 'INFO'},
+        'django.db.backends': {'handlers': ['stream'], 'level': 'WARNING'},
+        'globus_portal_framework': {'handlers': ['stream'], 'level': 'INFO'},
+        'dgpf1': {'handlers': ['stream'], 'level': 'INFO', 'propagate': True},
+    },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -207,7 +222,11 @@ SEARCH_INDEXES = {
             {'name': 'License', 'field_name': 'License' },
             {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
             {'name': 'Provider ID', 'field_name': 'Provider_ID' },
-        ]
+        ],
+        'facet_modifiers': [
+            'globus_portal_framework.modifiers.facets.drop_empty',
+            'dgpf1.facet_modifiers.lookup_replace_provider_id',
+        ],
     },
     'hpc-ed-v1-match-all': {
         'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1 (match all)',
@@ -225,8 +244,31 @@ SEARCH_INDEXES = {
             {'name': 'License', 'field_name': 'License' },
             {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
             {'name': 'Provider ID', 'field_name': 'Provider_ID' },
-        ]
+        ],
+        'facet_modifiers': [
+            'globus_portal_framework.modifiers.facets.drop_empty',
+            'dgpf1.facet_modifiers.lookup_replace_provider_id',
+        ],
     },
 }
+
+AVAILABLE_PROVIDERS = [
+    {
+        "name": "Linked In",
+        "id": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:897",
+    },
+    {
+        "name": "Lynda",
+        "id": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:896",
+    },
+    {
+        "name": "Cornell University",
+        "id": "urn:ogf:glue2.access-ci.org:organization:cac.cornell.edu",
+    },
+    {
+        "name": "SC Conference Series",
+        "id": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:352",
+    }
+]
 
 PROJECT_TITLE = 'Search Pilot'

@@ -1,3 +1,10 @@
+v0.5.0 2024-03-22 Nick, JP
+  - Order and format detail results fields
+  - Follow Training URL to result detail page
+  - Added optional unit tests
+  - Lookup Provider_IDs in model and display names instead of IDs in facets
+  - Createa an api that returns all Provider model data in JSON
+
 v0.4.0 2024-03-22 Nick, JP
   - Define new provider Model
   - Replace hardcoded credentials (which have now been revoked) with configuration file credentials

@@ -1,5 +1,5 @@
 {% extends "globus-portal-framework/v2/search-base.html" %}
-{% load is_active index_template is_active %}
+{% load is_active index_template is_active humanize %}
 
 {% block breadcrumb_items %}
 {{block.super}}
@@ -29,11 +29,27 @@
       <a href="https://operations.access-ci.org/online_services/search_pilot" target="_blank">this link</a>.</p>
 
       <p>This pilot uses Globus Search to publish and search HPC-ED pilot training material metadata:
-      <ul>
-        <li>Index Name: <b>{{globus_portal_framework.index_data.name}}</b></li>
-        <li>Index UUID: <b>{{globus_portal_framework.index_data.uuid}}</b></li>
-      <ul>
       </p>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped table-bordered">
+            <tbody>
+            {% for item in index_info %}
+            <tr>
+              <td>{{item.display_name}}</td>
+              {% if item.type == "int" %}
+              <td>{{item.value | intcomma }}</td>
+              {% else %}
+              <td>{{item.value }}</td>
+              {% endif %}
+            </tr>
+            {% empty %}
+            <p>No index info is available.</p>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
       {% endblock %} 
     </div>
 {% comment %}

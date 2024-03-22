@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+import globus_portal_framework.urls
 
 #from django.views.debug import technical_500_response
 
 urlpatterns = [
+    path('<index:index>/about/', views.search_about, name='search-about'),
     path('admin/', admin.site.urls),
     # Provides the basic search portal
     path('', include('globus_portal_framework.urls')),

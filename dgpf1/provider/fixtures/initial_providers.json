@@ -1,0 +1,34 @@
+[
+    {
+      "model": "provider.provider",
+      "pk": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:352",
+      "fields": {
+        "Provider_Short_Name": "SC",
+        "Provider_Name": "SC Conference Series"
+      }
+    },
+    {
+      "model": "provider.provider",
+      "pk": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:896",
+      "fields": {
+        "Provider_Short_Name": "Lynda",
+        "Provider_Name": "Lynda"
+      }
+    },
+    {
+      "model": "provider.provider",
+      "pk": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:897",
+      "fields": {
+        "Provider_Short_Name": "LinkedIn",
+        "Provider_Name": "Linked In"
+      }
+    },
+    {
+      "model": "provider.provider",
+      "pk": "urn:ogf:glue2.access-ci.org:organization:cac.cornell.edu",
+      "fields": {
+        "Provider_Short_Name": "Cornell Univ.",
+        "Provider_Name": "Cornell University"
+      }
+    }
+    ]

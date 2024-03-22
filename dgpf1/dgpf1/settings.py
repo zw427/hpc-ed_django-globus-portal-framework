@@ -132,6 +132,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'stream': {'level': 'DEBUG', 'class': 'logging.StreamHandler'},
+        'null': {'level': 'DEBUG', 'class': 'logging.NullHandler'},
+    },
+    'loggers': {
+        'django': {'handlers': ['stream'], 'level': 'INFO'},
+        'django.db.backends': {'handlers': ['stream'], 'level': 'WARNING'},
+        'globus_portal_framework': {'handlers': ['stream'], 'level': 'INFO'},
+        'dgpf1': {'handlers': ['stream'], 'level': 'INFO', 'propagate': True},
+    },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -208,6 +223,9 @@ SEARCH_INDEXES = {
             {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
             {'name': 'Provider ID', 'field_name': 'Provider_ID' },
         ],
+        'facet_modifiers': [
+            'globus_portal_framework.modifiers.facets.drop_empty',
+            'dgpf1.facet_modifiers.lookup_replace_provider_id',
         'fields': [
             ('title', title),
             ('general_info', general_info),
@@ -231,6 +249,9 @@ SEARCH_INDEXES = {
             {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
             {'name': 'Provider ID', 'field_name': 'Provider_ID' },
         ],
+        'facet_modifiers': [
+            'globus_portal_framework.modifiers.facets.drop_empty',
+            'dgpf1.facet_modifiers.lookup_replace_provider_id',
         'fields': [
             ('title', title),
             ('general_info', general_info),

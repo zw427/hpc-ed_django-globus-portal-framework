@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import json
 import os
 import sys
-from dgpf1.fields import title, general_info
+from dgpf1.fields import title, general_info, detail_result_display_fields
 #import pdb
 #pdb.set_trace()
 
@@ -211,6 +211,7 @@ SEARCH_INDEXES = {
         'fields': [
             ('title', title),
             ('general_info', general_info),
+            ('detail_result_display_fields', detail_result_display_fields),
         ],
     },
     'hpc-ed-v1-match-all': {
@@ -233,6 +234,7 @@ SEARCH_INDEXES = {
         'fields': [
             ('title', title),
             ('general_info', general_info),
+            ('detail_result_display_fields', detail_result_display_fields),
         ],
     },
 }

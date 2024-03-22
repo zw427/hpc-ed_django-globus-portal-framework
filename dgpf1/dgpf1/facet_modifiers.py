@@ -1,16 +1,8 @@
 import logging
 from django.conf import settings
+from provider.models import Provider
 
 log = logging.getLogger(__name__)
-
-
-def __lookup_provider_name(provider_id: str) -> str:
-    for provider in settings.AVAILABLE_PROVIDERS:
-        if provider["id"] == provider_id:
-            return provider["name"]
-    log.warning(f"Provider {provider_id} is unknown and needs to be "
-                "configured in settings.AVAILABLE_PROVIDERS!")
-    return "Other"
 
 
 def lookup_replace_provider_id(facets: dict) -> dict:
@@ -19,5 +11,10 @@ def lookup_replace_provider_id(facets: dict) -> dict:
     for facet in facets:
         if facet["field_name"] == "Provider_ID":
             for bucket in facet["buckets"]:
-                bucket["value"] = __lookup_provider_name(bucket["value"])
+                try:
+                    bucket["value"] = Provider.objects.get(Provider_ID=bucket["value"]).Provider_Name
+                except Provider.DoesNotExist:
+                    log.warning(f"Provider {bucket['value']} is unknown and needs to be "
+                                "added to the database!")
+                    bucket["value"] = "Other"
     return facets

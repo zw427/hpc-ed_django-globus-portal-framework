@@ -252,23 +252,4 @@ SEARCH_INDEXES = {
     },
 }
 
-AVAILABLE_PROVIDERS = [
-    {
-        "name": "Linked In",
-        "id": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:897",
-    },
-    {
-        "name": "Lynda",
-        "id": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:896",
-    },
-    {
-        "name": "Cornell University",
-        "id": "urn:ogf:glue2.access-ci.org:organization:cac.cornell.edu",
-    },
-    {
-        "name": "SC Conference Series",
-        "id": "urn:ogf.org:glue2:access-ci.org:resource:cider:infrastructure.organizations:352",
-    }
-]
-
 PROJECT_TITLE = 'Search Pilot'

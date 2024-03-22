@@ -33,3 +33,11 @@ And assign it to your env with:
 ```
 export APP_CONFIG=local_settings.py
 ```
+
+### Fixtures
+
+Providers data is not populated by default and must be done manually. You can do this with the following: 
+
+```
+python manage.py loaddata initial_providers
+```

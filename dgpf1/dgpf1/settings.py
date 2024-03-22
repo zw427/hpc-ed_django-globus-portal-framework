@@ -226,6 +226,7 @@ SEARCH_INDEXES = {
         'facet_modifiers': [
             'globus_portal_framework.modifiers.facets.drop_empty',
             'dgpf1.facet_modifiers.lookup_replace_provider_id',
+        ],
         'fields': [
             ('title', title),
             ('general_info', general_info),
@@ -252,6 +253,7 @@ SEARCH_INDEXES = {
         'facet_modifiers': [
             'globus_portal_framework.modifiers.facets.drop_empty',
             'dgpf1.facet_modifiers.lookup_replace_provider_id',
+        ],
         'fields': [
             ('title', title),
             ('general_info', general_info),

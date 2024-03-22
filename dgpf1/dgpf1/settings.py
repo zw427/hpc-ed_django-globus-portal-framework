@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import json
 import os
 import sys
-
+from dgpf1.fields import title, general_info, detail_result_display_fields
 #import pdb
 #pdb.set_trace()
 
@@ -207,7 +207,12 @@ SEARCH_INDEXES = {
             {'name': 'License', 'field_name': 'License' },
             {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
             {'name': 'Provider ID', 'field_name': 'Provider_ID' },
-        ]
+        ],
+        'fields': [
+            ('title', title),
+            ('general_info', general_info),
+            ('detail_result_display_fields', detail_result_display_fields),
+        ],
     },
     'hpc-ed-v1-match-all': {
         'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1 (match all)',
@@ -225,7 +230,12 @@ SEARCH_INDEXES = {
             {'name': 'License', 'field_name': 'License' },
             {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
             {'name': 'Provider ID', 'field_name': 'Provider_ID' },
-        ]
+        ],
+        'fields': [
+            ('title', title),
+            ('general_info', general_info),
+            ('detail_result_display_fields', detail_result_display_fields),
+        ],
     },
 }
 

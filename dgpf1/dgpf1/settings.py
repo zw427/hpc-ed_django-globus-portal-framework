@@ -159,8 +159,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ### DGPF Customizations
 
 # Your portal credentials for a Globus Auth Flow
-SOCIAL_AUTH_GLOBUS_KEY = 'dc8acc68-40e2-43fb-a56b-524e3dd89550'
-SOCIAL_AUTH_GLOBUS_SECRET = 'oBXUWfMomt12IySWC7vjR22o8g4bmuNJLKjvUY/9I2M='
+SOCIAL_AUTH_GLOBUS_KEY = CONF['SOCIAL_AUTH_GLOBUS_KEY']
+SOCIAL_AUTH_GLOBUS_SECRET = CONF['SOCIAL_AUTH_GLOBUS_SECRET']
 
 # This is a general Django setting if views need to redirect to login
 # https://docs.djangoproject.com/en/3.2/ref/settings/#login-url

@@ -1,3 +1,9 @@
+v0.4.0 2024-03-22 Nick, JP
+  - Define new provider Model
+  - Replace hardcoded credentials (which have now been revoked) with configuration file credentials
+  - Display more information about the index in the search about page
+  - Add section to README for development
+
 v0.3.0 2024-02-15 JP
   - Configure a filter_match=match-all index
 

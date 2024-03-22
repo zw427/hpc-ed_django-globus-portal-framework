@@ -1,16 +1,12 @@
 <table class="table table-striped table-bordered">
   <tbody>
   {% block detail_general_metadata %}
-  {% for key, value in project_metadata.items %}
+  {% for item in detail_result_display_fields %}
   <tr>
-    <td>{{key}}</td>
-    <td>{{value}}</td>
+    <td>{{item.display_name}}</td>
+    <td>{{item.value}}</td>
   </tr>
   {% endfor %}
-  <tr>
-    <td><b>subject</b></td>
-    <td>{{ subject }}</td>
-  </tr>
   {% endblock %}
   </tbody>
 </table>

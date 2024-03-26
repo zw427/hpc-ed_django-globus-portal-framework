@@ -1,3 +1,6 @@
+v0.5.2 2024-03-26 Nick
+  - Fix Provider facet display name versus value used to search on facet
+
 v0.5.1 2024-03-22 JP
   - Fix settings.py syntax error
 

@@ -27,7 +27,7 @@ def test_facet_modifiers_lookup_known_provider_id():
         }
     ]
     updated_facets = facet_modifiers.lookup_replace_provider_id(facets)
-    assert updated_facets[0]["buckets"][0]["value"] == "Linked In"
+    assert updated_facets[0]["buckets"][0]["custom_display_value"] == "Linked In"
 
 
 @pytest.mark.django_db
@@ -39,4 +39,4 @@ def test_facet_modifiers_lookup_unknown_provider_id():
         }
     ]
     updated_facets = facet_modifiers.lookup_replace_provider_id(facets)
-    assert updated_facets[0]["buckets"][0]["value"] == "Other"
+    assert updated_facets[0]["buckets"][0]["custom_display_value"] == "Other"

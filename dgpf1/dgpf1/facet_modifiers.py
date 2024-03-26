@@ -12,9 +12,9 @@ def lookup_replace_provider_id(facets: dict) -> dict:
         if facet["field_name"] == "Provider_ID":
             for bucket in facet["buckets"]:
                 try:
-                    bucket["value"] = Provider.objects.get(Provider_ID=bucket["value"]).Provider_Name
+                    bucket["custom_display_value"] = Provider.objects.get(Provider_ID=bucket["value"]).Provider_Name
                 except Provider.DoesNotExist:
                     log.warning(f"Provider {bucket['value']} is unknown and needs to be "
                                 "added to the database!")
-                    bucket["value"] = "Other"
+                    bucket["custom_display_value"] = "Other"
     return facets

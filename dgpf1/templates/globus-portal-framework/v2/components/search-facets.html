@@ -1,0 +1,20 @@
+{% extends 'globus-portal-framework/v2/components/search-facets.html' %}
+{% comment %}
+
+See https://github.com/globus/django-globus-portal-framework/blob/main/globus_portal_framework/templates/globus-portal-framework/v2/components/search-facets.html
+
+{% endcomment %}
+
+{% block facet_value %}
+
+{% if field.custom_display_value %}
+
+{{field.custom_display_value}}
+
+{% else %}
+
+{{ block.super }}
+
+{% endif %}
+
+{% endblock %}

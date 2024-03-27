@@ -1,3 +1,7 @@
+v0.6.0 2024-03-27 Nick
+  - Display datetimes with timezone
+  - Fix leading, other, trailing fields code (was duplicating some fields)
+
 v0.5.2 2024-03-26 Nick
   - Fix Provider facet display name versus value used to search on facet
 

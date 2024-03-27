@@ -79,6 +79,9 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
+            'libraries': {
+                'settings_value': 'templatetags.get_settings',
+            },
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -263,3 +266,4 @@ SEARCH_INDEXES = {
 }
 
 PROJECT_TITLE = 'Search Pilot'
+APP_VERSION = CONF.get('APP_VERSION', '')

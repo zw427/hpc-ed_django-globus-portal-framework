@@ -1,3 +1,6 @@
+v0.7.0 2024-03-27 JP
+  - Implement templatetags/get_settings.py so settings can be printed in templates
+
 v0.6.0 2024-03-27 Nick
   - Display datetimes with timezone
   - Fix leading, other, trailing fields code (was duplicating some fields)

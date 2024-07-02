@@ -1,5 +1,6 @@
-v0.?.? 2024-03-28 JP
+v0.7.1 2024-07-02 JP
   - Change header version number to point to HPC-ED DGPF GitHub repo
+  - Add PEARC24 tutorial catalog
 
 v0.7.0 2024-03-27 JP
   - Implement templatetags/get_settings.py so settings can be printed in templates

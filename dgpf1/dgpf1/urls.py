@@ -31,4 +31,5 @@ urlpatterns = [
     path('', include('social_django.urls', namespace='social')),
     path('favicon.ico', views.favicon),
     path('dump.html', views.Debug_Details, name='debug-details'),
+    path('download/<index:index>/', views.download_html, name='download_html'),
 ]

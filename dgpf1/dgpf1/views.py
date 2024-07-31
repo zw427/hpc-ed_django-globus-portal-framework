@@ -7,7 +7,8 @@ from django.views import debug
 from django.shortcuts import render
 import sys
 import globus_sdk
-from globus_portal_framework.gsearch import get_index
+
+from .to_html import html_search, parse
 
 @require_GET
 @cache_control(max_age=60 * 60 * 24, immutable=True, public=True)  # one day
@@ -45,3 +46,16 @@ def search_about(request: HttpRequest, index: str) -> HttpResponse:
         field["display_name"] = field.get("display_name") or field["field_name"].capitalize()
     context = dict(index_info=display_fields)
     return render(request, "globus-portal-framework/v2/search-about.html", context)
+
+
+def download_html(request: HttpRequest, index: str) -> HttpResponse:
+
+    q = request.META.get('HTTP_REFERER').split("/")[-1]
+    query, filters = parse(q)
+    query = '*' if query == '' else query
+    content = html_search(index, query, filters, request.user)
+
+    response = HttpResponse(content, content_type='html')
+    response['Content-Disposition'] = 'attachment; filename='+ query + '.html'
+        
+    return response

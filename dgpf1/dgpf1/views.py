@@ -7,6 +7,7 @@ from django.views import debug
 from django.shortcuts import render
 import sys
 import globus_sdk
+from globus_portal_framework.gsearch import get_index
 
 from .to_html import html_search, parse
 

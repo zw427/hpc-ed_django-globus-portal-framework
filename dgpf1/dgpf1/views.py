@@ -9,7 +9,7 @@ import sys
 import globus_sdk
 from globus_portal_framework.gsearch import get_index
 
-from .to_html import html_search, parse
+from dgpf1.hpced.download import download
 
 @require_GET
 @cache_control(max_age=60 * 60 * 24, immutable=True, public=True)  # one day
@@ -49,14 +49,18 @@ def search_about(request: HttpRequest, index: str) -> HttpResponse:
     return render(request, "globus-portal-framework/v2/search-about.html", context)
 
 
-def download_html(request: HttpRequest, index: str) -> HttpResponse:
+def download_as_html(request: HttpRequest, index: str) -> HttpResponse:
 
-    q = request.META.get('HTTP_REFERER').split("/")[-1]
-    query, filters = parse(q)
-    query = '*' if query == '' else query
-    content = html_search(index, query, filters, request.user)
+    # download the requested metadata into html and assign a filename
+    status, content = download(request.session['search'], request.user)
+    filename = request.session['search']['query'] if status else "Error"
 
-    response = HttpResponse(content, content_type='html')
-    response['Content-Disposition'] = 'attachment; filename='+ query + '.html'
-        
+    # HttpResponse to render
+    response = HttpResponse(content,
+        headers={
+            "Content-Type": "html",
+            "Content-Disposition": 'attachment; filename="' + filename +'.html"'
+        }
+    )
     return response
+    

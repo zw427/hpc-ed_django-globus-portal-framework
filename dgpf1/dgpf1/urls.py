@@ -23,6 +23,7 @@ import globus_portal_framework.urls
 
 urlpatterns = [
     path('<index:index>/about/', views.search_about, name='search-about'),
+    path('<index:index>/download/', views.download_as_html, name='download_as_html'),
     path('api/provider/', include('provider.urls')),
     path('admin/', admin.site.urls),
     # Provides the basic search portal
@@ -31,5 +32,4 @@ urlpatterns = [
     path('', include('social_django.urls', namespace='social')),
     path('favicon.ico', views.favicon),
     path('dump.html', views.Debug_Details, name='debug-details'),
-    path('download/<index:index>/', views.download_html, name='download_html'),
 ]

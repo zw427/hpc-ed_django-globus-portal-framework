@@ -32,4 +32,6 @@ urlpatterns = [
     path('', include('social_django.urls', namespace='social')),
     path('favicon.ico', views.favicon),
     path('dump.html', views.Debug_Details, name='debug-details'),
+    path('<index:index>/publish/', views.publish, name='publish'),
+    path('<index:index>/publish/status', views.publish_data, name='publish_data'),
 ]

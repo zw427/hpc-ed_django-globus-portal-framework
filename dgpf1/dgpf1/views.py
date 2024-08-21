@@ -49,7 +49,7 @@ def search_about(request: HttpRequest, index: str) -> HttpResponse:
     return render(request, "globus-portal-framework/v2/search-about.html", context)
 
 
-def download_as_html(request: HttpRequest, index: str) -> HttpResponse:
+def download_as_html(request: HttpRequest, index: str) -> HttpResponse:    
 
     # download the requested metadata into html and assign a filename
     status, content = download(request.session['search'], request.user)
@@ -63,4 +63,107 @@ def download_as_html(request: HttpRequest, index: str) -> HttpResponse:
         }
     )
     return response
+
+
+
+from django.shortcuts import render
+from .forms import ExcelFileForm
+import pandas as pd
+
+def publish(request, index):
+    form = ExcelFileForm()
+    out = None
+    error_message = None
+    ok = False
     
+    if request.method == 'POST':
+        form = ExcelFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_file = request.FILES['file']
+
+            try:
+                out, ok = process_excel(uploaded_file)
+            except Exception as e:
+                error_message = f'Error processing file: {e}'
+
+    return render(request, 'publish.html', {
+        'form': form,
+        'processed_data': out,
+        'error_message': error_message,
+        'ok': ok,
+        'index': index  
+    })
+
+
+
+
+def process_excel(uploaded_file):
+    excel_data = check_excel_columns(uploaded_file)
+
+    return excel_data.to_html(), True
+
+import pandas as pd
+
+columns = [
+    "Title", "URL", "Resource_URL_Type", "Cost", "Language", "Provider_ID", 
+    "subject", "id", "visible_to", "ingest_type", "Authors", "Abstract", 
+    "Keywords", "Version_date", "Start_Datetime", "Duration", 
+    "Learning_Resource_Type", "Expertise_Level", "Target_Group", 
+    "License", "Learning_Outcome", "Rating"
+]
+
+required_columns = [
+    "URL", "Resource_URL_Type", "Language", "Cost", "Title", 
+    "Provider_ID", "subject", "id", "visible_to"
+]
+
+
+from .validate import validate_excel_sheet
+def check_excel_columns(excel_file_path):
+
+    df = pd.read_excel(excel_file_path)
+    excel_columns = df.columns.tolist()
+
+    missing_columns = [col for col in excel_columns if col not in columns]
+    if missing_columns:
+        raise ValueError(f"The following columns are not allowed: {', '.join(missing_columns)}")
+    
+    missing_required_columns = [col for col in required_columns if col not in excel_columns]
+    if missing_required_columns:
+        raise ValueError(f"The following required columns are missing: {', '.join(missing_required_columns)}")
+    
+    validate_excel_sheet(excel_file_path)
+    
+    print("All columns in the Excel file are allowed and all required columns are present.")
+    return df
+
+
+
+
+
+
+from django.shortcuts import render, redirect
+from django.urls import reverse
+import globus_sdk
+
+def publish_to_globus(processed_data):
+
+    return True
+
+def publish_data(request, index):
+    if request.method == 'POST':
+        processed_data = request.POST.get('processed_data')
+        
+        success = publish_to_globus(processed_data)
+
+        if success:
+            message = "Publish successfully."
+        else:
+            message = "Publish failed."
+        
+        return render(request, 'publish_status.html', {
+            'message': message,
+            'index': index
+        })
+    else:
+        return redirect(reverse('publish', args=[index]))

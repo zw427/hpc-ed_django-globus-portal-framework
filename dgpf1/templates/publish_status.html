@@ -1,0 +1,16 @@
+{% extends "globus-portal-framework/v2/search-base.html" %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Publish Status</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    <a href="{% url 'publish' index %}">Go back</a>
+</body>
+</html>
+
+{% endblock %}

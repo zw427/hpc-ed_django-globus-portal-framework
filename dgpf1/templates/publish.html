@@ -1,0 +1,43 @@
+{% extends "globus-portal-framework/v2/search-base.html" %}
+
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and Process Excel File</title>
+</head>
+<body>
+    <h1>Upload Excel File</h1>
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Validate</button>
+    </form>
+
+    {% if processed_data %}
+        <h2>Publish Data?</h2>
+        <div>{{ processed_data|safe }}</div>
+    {% endif %}
+
+    {% if ok %}
+    <form method="post" action="{% url 'publish_data' index=index %}">
+        {% csrf_token %}
+        <input type="hidden" name="processed_data" value="{{ processed_data|escape }}">
+        <button type="submit">Publish to Index</button>
+    </form>
+{% endif %}
+
+
+</body>
+</html>
+
+
+
+{% endblock %}

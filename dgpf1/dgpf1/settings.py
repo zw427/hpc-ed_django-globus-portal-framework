@@ -191,6 +191,8 @@ SOCIAL_AUTH_GLOBUS_SCOPE = [
     'urn:globus:auth:scope:search.api.globus.org:search',
 ]
 
+GLOBUS_NON_USERS_ALLOWED_PUBLIC_ACCESS = True
+
 INSTALLED_APPS.extend(['globus_portal_framework', 'social_django'])
 
 MIDDLEWARE.extend(['globus_portal_framework.middleware.ExpiredTokenMiddleware',
@@ -213,32 +215,6 @@ SEARCH_INDEXES = {
     'hpc-ed-v2': {
         'name': 'HPC Training Material (HPC-ED) - Beta catalog v1',
         'uuid': 'c82ec034-ba04-4119-bbaa-a4798a859723',
-        'facets': [
-            {'name': 'Expertise Level', 'field_name': 'Expertise_Level' },
-            {'name': 'Outcomes', 'field_name': 'Learning_Outcome' },
-            {'name': 'Target Group', 'field_name': 'Target_Group' },
-            {'name': 'Learning Resource Type', 'field_name': 'Learning_Resource_Type'},
-            {'name': 'Learning Outcome', 'field_name': 'Learning_Outome' },
-            {'name': 'Rating', 'field_name': 'Rating', 'type': 'numeric_histogram', 'size': 5, 'histogram_range': {'low': 0.0, 'high': 5.0}},
-            {'name': 'Duration', 'field_name': 'Duration', 'type': 'numeric_histogram', 'size': 8, 'histogram_range': {'low': 30, 'high': 480}},
-            {'name': 'Keywords', 'field_name': 'Keywords' },
-            {'name': 'License', 'field_name': 'License' },
-            {'name': 'URL Type', 'field_name': 'Resource_URL_Type' },
-            {'name': 'Provider ID', 'field_name': 'Provider_ID' },
-        ],
-        'facet_modifiers': [
-            'globus_portal_framework.modifiers.facets.drop_empty',
-            'dgpf1.facet_modifiers.lookup_replace_provider_id',
-        ],
-        'fields': [
-            ('title', title),
-            ('general_info', general_info),
-            ('detail_result_display_fields', detail_result_display_fields),
-        ],
-    },
-    'hpc-ed-v1': {
-        'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1',
-        'uuid': '0e8be9d5-99d7-4641-ae43-f72b40bb8a5c',
         'facets': [
             {'name': 'Expertise Level', 'field_name': 'Expertise_Level' },
             {'name': 'Outcomes', 'field_name': 'Learning_Outcome' },
@@ -288,10 +264,9 @@ SEARCH_INDEXES = {
             ('detail_result_display_fields', detail_result_display_fields),
         ],
     },
-    'hpc-ed-v1-match-all': {
-        'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1 (match all)',
+    'hpc-ed-v1': {
+        'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1',
         'uuid': '0e8be9d5-99d7-4641-ae43-f72b40bb8a5c',
-        'filter_match': 'match-all',
         'facets': [
             {'name': 'Expertise Level', 'field_name': 'Expertise_Level' },
             {'name': 'Outcomes', 'field_name': 'Learning_Outcome' },
@@ -314,7 +289,7 @@ SEARCH_INDEXES = {
             ('general_info', general_info),
             ('detail_result_display_fields', detail_result_display_fields),
         ],
-    },
+    }
 }
 
 PROJECT_TITLE = 'Search Pilot'

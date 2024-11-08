@@ -191,6 +191,8 @@ SOCIAL_AUTH_GLOBUS_SCOPE = [
     'urn:globus:auth:scope:search.api.globus.org:search',
 ]
 
+GLOBUS_NON_USERS_ALLOWED_PUBLIC_ACCESS = True
+
 INSTALLED_APPS.extend(['globus_portal_framework', 'social_django'])
 
 MIDDLEWARE.extend(['globus_portal_framework.middleware.ExpiredTokenMiddleware',
@@ -210,9 +212,9 @@ for t in TEMPLATES:
     t['OPTIONS']['context_processors'].append('globus_portal_framework.context_processors.globals')
 
 SEARCH_INDEXES = {
-    'hpc-ed-v1': {
-        'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1',
-        'uuid': '0e8be9d5-99d7-4641-ae43-f72b40bb8a5c',
+    'hpc-ed-v2': {
+        'name': 'HPC Training Material (HPC-ED) - Beta catalog v1',
+        'uuid': 'c82ec034-ba04-4119-bbaa-a4798a859723',
         'facets': [
             {'name': 'Expertise Level', 'field_name': 'Expertise_Level' },
             {'name': 'Outcomes', 'field_name': 'Learning_Outcome' },
@@ -262,10 +264,9 @@ SEARCH_INDEXES = {
             ('detail_result_display_fields', detail_result_display_fields),
         ],
     },
-    'hpc-ed-v1-match-all': {
-        'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1 (match all)',
+    'hpc-ed-v1': {
+        'name': 'HPC Training Material (HPC-ED) - Alpha catalog v1',
         'uuid': '0e8be9d5-99d7-4641-ae43-f72b40bb8a5c',
-        'filter_match': 'match-all',
         'facets': [
             {'name': 'Expertise Level', 'field_name': 'Expertise_Level' },
             {'name': 'Outcomes', 'field_name': 'Learning_Outcome' },
@@ -288,7 +289,7 @@ SEARCH_INDEXES = {
             ('general_info', general_info),
             ('detail_result_display_fields', detail_result_display_fields),
         ],
-    },
+    }
 }
 
 PROJECT_TITLE = 'Search Pilot'
